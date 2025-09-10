@@ -1,0 +1,13 @@
+services:
+  - type: worker
+    name: tg-bot-orders
+    runtime: python
+    region: frankfurt          # по-близо до BG
+    plan: free                 # безплатна инстанция
+    buildCommand: pip install -r requirements.txt
+    startCommand: python advancing_query_bot.py
+    envVars:
+      - key: TOKEN
+        sync: false            # ще го въведеш в UI-то на Render
+      - key: TZ
+        value: Europe/Sofia    # за всеки случай; имаме и tzdata
